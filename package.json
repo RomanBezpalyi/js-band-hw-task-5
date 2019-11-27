@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --env.mode development --env.port 8080",
     "build": "webpack --env.mode production",
-    "test": "jest",
+    "test": "jest && jest --coverage",
     "lint": "eslint --ext .js src/"
   },
   "author": "Roman Bezpalyi <romabespaly@gmail.com>",

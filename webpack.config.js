@@ -12,7 +12,7 @@ module.exports = ({ mode = 'production' }) =>
       mode,
       entry: './src/index.js',
       output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
       },
       module: {
@@ -41,7 +41,7 @@ module.exports = ({ mode = 'production' }) =>
         ],
       },
       plugins: [
-        new CleanWebpackPlugin('dist'),
+        new CleanWebpackPlugin('build'),
         new FriendlyErrorsWebpackPlugin(),
         new WebpackBar(),
       ],

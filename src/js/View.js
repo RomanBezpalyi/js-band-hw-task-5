@@ -1,8 +1,10 @@
 /* eslint-disable class-methods-use-this */
-import EVENT_EMITTER from './services/EventEmitter';
+import EventEmitter from './services/EventEmitter';
 import VehicleFactory from './classes/VehicleFactory';
 import Cost from './classes/Cost';
 import collectionTypes from './constants/collectionTypes';
+
+const EVENT_EMITTER = new EventEmitter();
 
 export default class View {
   constructor() {
