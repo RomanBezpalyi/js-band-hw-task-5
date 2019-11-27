@@ -36,4 +36,4 @@ class LocalStorage {
   }
 }
 
-export default new LocalStorage();
+export default LocalStorage;

@@ -1,7 +1,10 @@
-import EVENT_EMITTER from './services/EventEmitter';
-import LOCAL_STORAGE from './services/LocalStorage';
+import EventEmitter from './services/EventEmitter';
+import LocalStorage from './services/LocalStorage';
 import Cost from './classes/Cost';
 import collectionTypes from './constants/collectionTypes';
+
+const EVENT_EMITTER = new EventEmitter();
+const LOCAL_STORAGE = new LocalStorage();
 
 export default class Controller {
   constructor(model, view) {
