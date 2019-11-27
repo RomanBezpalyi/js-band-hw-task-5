@@ -1,5 +1,5 @@
 {
-  "name": "hw4",
+  "name": "hw5",
   "version": "1.0.0",
   "description": "Vanilla JS app",
   "main": "index.js",
@@ -31,7 +31,7 @@
     "jest": "^24.9.0",
     "lint-staged": "^9.4.3",
     "mini-css-extract-plugin": "^0.5.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.19.1",
