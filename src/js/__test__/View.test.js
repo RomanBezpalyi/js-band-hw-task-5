@@ -119,11 +119,6 @@ describe('View class', () => {
   });
 
   it('should reset an event target', () => {
-    const event = {
-      target: {
-        reset: jest.fn(),
-      },
-    };
     inst.handleCancel(event);
     expect(event.target.reset.mock.calls.length).toBe(1);
   });
