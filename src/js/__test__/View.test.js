@@ -17,10 +17,10 @@ describe('View class', () => {
     expect(inst).toBeInstanceOf(View);
   });
 
-  it('should create DOM element', () => {
+  it('should create a DOM element', () => {
     const p = document.createElement('p');
     p.classList.add('text');
-    p.innerHTML = 'Hello World!';
+    p.textContent = 'Hello World!';
 
     const element = inst.createDOMElement('p', 'Hello World!', 'text');
     expect(element).toEqual(p);
@@ -57,16 +57,7 @@ describe('View class', () => {
     expect(result.length).toBe(5);
   });
 
-  // it('should reset target form', () => {
-  //   const form = inst.createDOMElement('form', null, 'form');
-  //   const input = inst.createDOMElement('input', 'Hello World!', 'input');
-  //   form.append(input);
-  //   const fnMock = jest.fn(inst.reset);
-  //   form.addEventListener('reset', fnMock);
-  //   expect(fnMock.mock.calls.length).toBe(1);
-  // });
-
-  it('should create a DOM element for vehicle and cost lists', () => {
+  it('should create a list item for vehicle and cost lists', () => {
     const vehicles = ['vehicle1', 'vehicle2'];
     const costs = ['cost1', 'cost2', 'cost3'];
 

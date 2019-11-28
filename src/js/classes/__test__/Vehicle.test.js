@@ -5,16 +5,12 @@ describe('Vehicle class', () => {
   const basicProducedYear = 1987;
   const basicCapacity = 2300;
   const basicAverageSpeed = 420;
-  let inst;
-
-  beforeEach(() => {
-    inst = new Vehicle(
-      basicModel,
-      basicProducedYear,
-      basicCapacity,
-      basicAverageSpeed,
-    );
-  });
+  const inst = new Vehicle(
+    basicModel,
+    basicProducedYear,
+    basicCapacity,
+    basicAverageSpeed,
+  );
 
   it('should create an instance of Vehicle', () => {
     const { model, producedYear, capacity, averageSpeed } = inst;

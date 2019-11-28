@@ -9,11 +9,7 @@ describe('Truck class', () => {
     capacity: 2300,
     averageSpeed: 420,
   };
-  let inst;
-
-  beforeEach(() => {
-    inst = new Truck(truck);
-  });
+  const inst = new Truck(truck);
 
   it('should create an instance of Truck', () => {
     const {
