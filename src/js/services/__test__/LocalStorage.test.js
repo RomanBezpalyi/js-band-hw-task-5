@@ -1,6 +1,6 @@
 import LocalStorage from '../LocalStorage';
 
-describe('EventEmitter class', () => {
+describe('LocalStorage class', () => {
   let inst;
 
   beforeEach(() => {
@@ -23,9 +23,11 @@ describe('EventEmitter class', () => {
     expect(inst.prefix).toEqual(`${prefix}-`);
   });
 
-  //   it('should return array list from LS', () => {
-  //     const getItemsMock = jest.fn(inst.getItems('test'));
-  //     // const response = inst.getItems('test');
-  //     expect(getItemsMock.mock.calls.length).toBe(1);
-  //   });
+  it('should return undefined, if key is empty', () => {
+    expect(inst.getItems()).toBeUndefined;
+  });
+
+  it('should return undefined, if key is empty', () => {
+    expect(inst.setItems(undefined, undefined)).toBeUndefined;
+  });
 });

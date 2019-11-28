@@ -22,13 +22,22 @@ describe('VehicleFactory class', () => {
     averageSpeed: 420,
   };
 
-  it('should create a specified instance of Vehicle', () => {
+  it('should create an instance of Truck', () => {
     const truckInst = VehicleFactory.create(collectionTypes.TRUCKS, truck);
-    const shipInst = VehicleFactory.create(collectionTypes.SHIPS, ship);
-    const vehicleInst = VehicleFactory.create(null, truck);
 
     expect(truckInst).toBeInstanceOf(Truck);
+  });
+
+  it('should create an instance of Ship', () => {
+    const shipInst = VehicleFactory.create(collectionTypes.SHIPS, ship);
+
     expect(shipInst).toBeInstanceOf(Ship);
+  });
+
+  it('should create a default instance', () => {
+    const vehicleInst = VehicleFactory.create(null, truck);
+
+    expect(vehicleInst).not.toBeInstanceOf(Truck);
     expect(vehicleInst).toBeInstanceOf(Vehicle);
   });
 });

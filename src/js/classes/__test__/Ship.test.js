@@ -9,11 +9,7 @@ describe('Ship class', () => {
     capacity: 2300,
     averageSpeed: 420,
   };
-  let inst;
-
-  beforeEach(() => {
-    inst = new Ship(ship);
-  });
+  const inst = new Ship(ship);
 
   it('should create an instance of Ship', () => {
     const {
