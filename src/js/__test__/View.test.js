@@ -17,6 +17,78 @@ describe('View class', () => {
     expect(inst).toBeInstanceOf(View);
   });
 
+  it('should handle add of a truck', () => {
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        name: 'trucks',
+        querySelector: jest.fn(() => {
+          return { value: 'value' };
+        }),
+        reset: jest.fn(),
+      },
+    };
+
+    inst.handleAdd(event);
+    expect(event.preventDefault.mock.calls.length).toBe(1);
+    expect(event.target.reset.mock.calls.length).toBe(1);
+  });
+
+  it('should handle add of a ship', () => {
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        name: 'ships',
+        querySelector: jest.fn(() => {
+          return { value: 'value' };
+        }),
+        reset: jest.fn(),
+      },
+    };
+
+    inst.handleAdd(event);
+    expect(event.preventDefault.mock.calls.length).toBe(1);
+    expect(event.target.reset.mock.calls.length).toBe(1);
+  });
+
+  it('should handle add of a cost', () => {
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        name: 'costs',
+        querySelector: jest.fn(() => {
+          return { value: 'value' };
+        }),
+        querySelectorAll: jest.fn(() => {
+          return [
+            { checked: true, value: 'truck' },
+            { checked: false, value: 'ship' },
+          ];
+        }),
+        reset: jest.fn(),
+      },
+    };
+
+    inst.handleAdd(event);
+    expect(event.preventDefault.mock.calls.length).toBe(1);
+    expect(event.target.reset.mock.calls.length).toBe(1);
+  });
+
+  it('should return from adding undefined item', () => {
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        name: undefined,
+        querySelector: jest.fn(() => {
+          return { value: 'value' };
+        }),
+        reset: jest.fn(),
+      },
+    };
+
+    expect(inst.handleAdd(event)).toBeUndefined;
+  });
+
   it('should create a DOM element', () => {
     const p = document.createElement('p');
     p.classList.add('text');
@@ -43,7 +115,7 @@ describe('View class', () => {
     expect(result.length).toBe(2);
   });
 
-  it('should create a vehicle', () => {
+  it('should create a ship', () => {
     const ship = {
       name: 'Captain Nemo',
       countOfTeam: 4,
@@ -57,8 +129,32 @@ describe('View class', () => {
     expect(result.length).toBe(5);
   });
 
+  it('should create a truck', () => {
+    const truck = {
+      licensePlate: 'GRA-44-MI',
+      typeOfGas: 'Diesel',
+      model: 'Jeep',
+      producedYear: 1987,
+      capacity: 2300,
+      averageSpeed: 420,
+    };
+    const result = inst.createVehicle(collectionTypes.TRUCKS, truck);
+    expect(result).toBeInstanceOf(Array);
+    expect(result.length).toBe(5);
+  });
+
+  it('should reset an event target', () => {
+    const event = {
+      target: {
+        reset: jest.fn(),
+      },
+    };
+    inst.handleCancel(event);
+    expect(event.target.reset.mock.calls.length).toBe(1);
+  });
+
   it('should create a list item for vehicle and cost lists', () => {
-    const vehicles = ['vehicle1', 'vehicle2'];
+    const vehicles = [{ licensePlate: 'test' }, { name: 'Titanic' }];
     const costs = ['cost1', 'cost2', 'cost3'];
 
     inst.init(vehicles, costs);
