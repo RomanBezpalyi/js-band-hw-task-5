@@ -3,6 +3,7 @@ import collectionTypes from '../constants/collectionTypes';
 
 describe('View class', () => {
   let inst;
+  let event;
 
   beforeEach(() => {
     document.body.innerHTML =
@@ -11,51 +12,10 @@ describe('View class', () => {
       `<main><ul class='vehicle-list'>` +
       `</ul><ul class='cost-list'></ul></main>`;
     inst = new View();
-  });
-
-  it('should create an instance of itself', () => {
-    expect(inst).toBeInstanceOf(View);
-  });
-
-  it('should handle add of a truck', () => {
-    const event = {
+    event = {
       preventDefault: jest.fn(),
       target: {
-        name: 'trucks',
-        querySelector: jest.fn(() => {
-          return { value: 'value' };
-        }),
-        reset: jest.fn(),
-      },
-    };
-
-    inst.handleAdd(event);
-    expect(event.preventDefault.mock.calls.length).toBe(1);
-    expect(event.target.reset.mock.calls.length).toBe(1);
-  });
-
-  it('should handle add of a ship', () => {
-    const event = {
-      preventDefault: jest.fn(),
-      target: {
-        name: 'ships',
-        querySelector: jest.fn(() => {
-          return { value: 'value' };
-        }),
-        reset: jest.fn(),
-      },
-    };
-
-    inst.handleAdd(event);
-    expect(event.preventDefault.mock.calls.length).toBe(1);
-    expect(event.target.reset.mock.calls.length).toBe(1);
-  });
-
-  it('should handle add of a cost', () => {
-    const event = {
-      preventDefault: jest.fn(),
-      target: {
-        name: 'costs',
+        name: undefined,
         querySelector: jest.fn(() => {
           return { value: 'value' };
         }),
@@ -68,6 +28,30 @@ describe('View class', () => {
         reset: jest.fn(),
       },
     };
+  });
+
+  it('should create an instance of itself', () => {
+    expect(inst).toBeInstanceOf(View);
+  });
+
+  it('should handle add of a truck', () => {
+    event.target.name = 'trucks';
+
+    inst.handleAdd(event);
+    expect(event.preventDefault.mock.calls.length).toBe(1);
+    expect(event.target.reset.mock.calls.length).toBe(1);
+  });
+
+  it('should handle add of a ship', () => {
+    event.target.name = 'ships';
+
+    inst.handleAdd(event);
+    expect(event.preventDefault.mock.calls.length).toBe(1);
+    expect(event.target.reset.mock.calls.length).toBe(1);
+  });
+
+  it('should handle add of a cost', () => {
+    event.target.name = 'costs';
 
     inst.handleAdd(event);
     expect(event.preventDefault.mock.calls.length).toBe(1);
@@ -75,18 +59,9 @@ describe('View class', () => {
   });
 
   it('should return from adding undefined item', () => {
-    const event = {
-      preventDefault: jest.fn(),
-      target: {
-        name: undefined,
-        querySelector: jest.fn(() => {
-          return { value: 'value' };
-        }),
-        reset: jest.fn(),
-      },
-    };
-
-    expect(inst.handleAdd(event)).toBeUndefined;
+    const result = inst.handleAdd(event);
+    expect(result).toBeUndefined;
+    expect(event.target.reset.mock.calls.length).toBe(0);
   });
 
   it('should create a DOM element', () => {
@@ -144,11 +119,6 @@ describe('View class', () => {
   });
 
   it('should reset an event target', () => {
-    const event = {
-      target: {
-        reset: jest.fn(),
-      },
-    };
     inst.handleCancel(event);
     expect(event.target.reset.mock.calls.length).toBe(1);
   });
